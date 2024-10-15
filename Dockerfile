@@ -8,8 +8,6 @@ RUN npm install
 
 COPY . . 
 
-RUN gatsby build
-
 FROM node:16-alpine AS production
 
 WORKDIR /usr/src/app

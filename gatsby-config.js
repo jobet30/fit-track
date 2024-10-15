@@ -4,7 +4,7 @@
 module.exports = {
   siteMetadata: {
     title: `fit-track`,
-    siteUrl: `https://www.yourdomain.tld`
+    siteUrl: `https://www.yourdomain.tld`,
   },
-  plugins: ["gatsby-plugin-google-gtag"]
+  plugins: ["gatsby-plugin-google-gtag"],
 };

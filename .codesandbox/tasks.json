@@ -1,0 +1,38 @@
+{
+  // These tasks will run in order when initializing your CodeSandbox project.
+  "setupTasks": [
+    {
+      "command": "npm install",
+      "name": "Install Dependencies"
+    }
+  ],
+
+  // These tasks can be run from CodeSandbox. Running one will open a log in the app.
+  "tasks": {
+    "develop": {
+      "name": "develop",
+      "command": "gatsby build"
+    },
+    "start": {
+      "name": "start",
+      "command": "gatsby serve",
+      "runAtStart": true
+    },
+    "build": {
+      "name": "build",
+      "command": "gatsby build"
+    },
+    "serve": {
+      "name": "serve",
+      "command": "gatsby serve"
+    },
+    "clean": {
+      "name": "clean",
+      "command": "gatsby clean"
+    },
+    "prepare": {
+      "name": "prepare",
+      "command": "gatsby prepare"
+    }
+  }
+}

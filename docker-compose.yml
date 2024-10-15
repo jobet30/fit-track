@@ -16,27 +16,23 @@ services:
     depends_on:
       db:
         condition: service_healthy
-    networks:
-      - fitness_network
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      test: [ "CMD", "curl", "-f", "http://localhost:5000/health" ]
       interval: 30s
       timeout: 10s
       retries: 3
 
   frontend:
     build:
-      context: ./frontend
+      context: ./
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
     volumes:
       - ./frontend:/usr/src/app
       - logs:/usr/src/app/log
-    networks:
-      - fitness-network
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:80/health"]
+      test: [ "CMD", "curl", "-f", "http://localhost:80/health" ]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -44,37 +40,19 @@ services:
   db:
     image: mysql:8.0
     environment:
-      MYSQL_USERNAME: ${MYSQL_USERNAME}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USERNAME: root
+      MYSQL_DATABASE: fitness_tracker
     ports:
       - "3306:3306"
     volumes:
       - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
       - ./db/data:/var/lib/mysql
-    networks:
-      - fitness_network
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
       interval: 30s
       timeout: 10s
       retries: 3
 
-    logger:
-      image: fluent/fluentd:v1.12-debian-1
-      volumes:
-        - ./logs:/fluentd/log
-        - ./fluentd.conf:/fluentd/etc/fluent.conf
-      networks:
-        - fitness-network
-      depends_on:
-        - backend
-        - frontend
 volumes:
   db_data:
   logs:
-
-networks:
-  fitness-network:
-    driver: bridge

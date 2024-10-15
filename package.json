@@ -1,0 +1,23 @@
+{
+  "name": "fit-track",
+  "version": "1.0.0",
+  "private": true,
+  "description": "fit-track",
+  "author": "jobet1995",
+  "keywords": [
+    "gatsby"
+  ],
+  "scripts": {
+    "develop": "gatsby develop",
+    "start": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean"
+  },
+  "dependencies": {
+    "gatsby": "^5.13.7",
+    "gatsby-plugin-google-gtag": "^5.13.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}

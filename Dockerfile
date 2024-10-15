@@ -8,7 +8,7 @@ RUN npm install
 
 COPY . . 
 
-RUN npm run build
+RUN gatsby build
 
 FROM node:16-alpine AS production
 

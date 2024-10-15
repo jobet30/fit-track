@@ -12,7 +12,6 @@ FROM node:16-alpine AS production
 
 WORKDIR /usr/src/app
 
-COPY --from=build /usr/src/app/build ./build
 COPY --from=build /usr/src/app/package*.json ./
 
 RUN npm install --only=production

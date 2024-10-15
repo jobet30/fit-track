@@ -14,8 +14,6 @@ WORKDIR /usr/src/app
 
 COPY --from=build /usr/src/app/package*.json ./
 
-RUN npm install --only=production
-
 ENV NODE_ENV = production
 ENV PORT = 5000
 ENV JWT_SECRET = secret

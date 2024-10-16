@@ -12,13 +12,11 @@ const register = async (req, res) => {
       [email, hashedPassword],
     );
 
-    res
-      .status(201)
-      .json({
-        success: true,
-        message: "User registered successfully",
-        userId: result.insertId,
-      });
+    res.status(201).json({
+      success: true,
+      message: "User registered successfully",
+      userId: result.insertId,
+    });
   } catch (error) {
     res
       .status(500)

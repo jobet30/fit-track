@@ -1,78 +1,88 @@
 // src/components/RegistrationForm.js
 
-import React from 'react';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
+import React from "react";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
 const RegistrationForm = () => {
   const formik = useFormik({
     initialValues: {
-      fullName: '',
-      email: '',
-      password: '',
-      confirmPassword: '',
-      phoneNumber: '',
-      dateOfBirth: '',
-      street: '',
-      city: '',
-      state: '',
-      zipCode: '',
-      gender: '',
+      fullName: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+      phoneNumber: "",
+      dateOfBirth: "",
+      street: "",
+      city: "",
+      state: "",
+      zipCode: "",
+      gender: "",
       profilePicture: null,
       terms: false,
       newsletter: false,
     },
     validationSchema: Yup.object({
-      fullName: Yup.string().required('Required'),
-      email: Yup.string().email('Invalid email address').required('Required'),
+      fullName: Yup.string().required("Required"),
+      email: Yup.string().email("Invalid email address").required("Required"),
       password: Yup.string()
-        .min(8, 'Password must be at least 8 characters long')
-        .matches(/[A-Z]/, 'Must contain an uppercase letter')
-        .matches(/[a-z]/, 'Must contain a lowercase letter')
-        .matches(/[0-9]/, 'Must contain a number')
-        .matches(/[\W_]/, 'Must contain a special character')
-        .required('Required'),
+        .min(8, "Password must be at least 8 characters long")
+        .matches(/[A-Z]/, "Must contain an uppercase letter")
+        .matches(/[a-z]/, "Must contain a lowercase letter")
+        .matches(/[0-9]/, "Must contain a number")
+        .matches(/[\W_]/, "Must contain a special character")
+        .required("Required"),
       confirmPassword: Yup.string()
-        .oneOf([Yup.ref('password'), null], 'Passwords must match')
-        .required('Required'),
+        .oneOf([Yup.ref("password"), null], "Passwords must match")
+        .required("Required"),
       phoneNumber: Yup.string()
-        .matches(/^\(\d{3}\) \d{3}-\d{4}$/, 'Phone number must be in the format (XXX) XXX-XXXX')
-        .required('Required'),
+        .matches(
+          /^\(\d{3}\) \d{3}-\d{4}$/,
+          "Phone number must be in the format (XXX) XXX-XXXX",
+        )
+        .required("Required"),
       dateOfBirth: Yup.date()
-        .max(new Date(), 'Date of Birth cannot be in the future')
-        .required('Required'),
-      street: Yup.string().required('Required'),
-      city: Yup.string().required('Required'),
-      state: Yup.string().required('Required'),
+        .max(new Date(), "Date of Birth cannot be in the future")
+        .required("Required"),
+      street: Yup.string().required("Required"),
+      city: Yup.string().required("Required"),
+      state: Yup.string().required("Required"),
       zipCode: Yup.string()
-        .matches(/^\d{5}(-\d{4})?$/, 'Must be a valid zip code')
-        .required('Required'),
-      gender: Yup.string().required('Required'),
+        .matches(/^\d{5}(-\d{4})?$/, "Must be a valid zip code")
+        .required("Required"),
+      gender: Yup.string().required("Required"),
       profilePicture: Yup.mixed()
-        .required('A file is required')
-        .test('fileSize', 'File too large', value => !value || (value && value.size <= 1048576)), // 1MB limit
-      terms: Yup.bool().oneOf([true], 'You must accept the terms and conditions'),
+        .required("A file is required")
+        .test(
+          "fileSize",
+          "File too large",
+          (value) => !value || (value && value.size <= 1048576),
+        ), // 1MB limit
+      terms: Yup.bool().oneOf(
+        [true],
+        "You must accept the terms and conditions",
+      ),
     }),
     onSubmit: async (values, { setSubmitting, setErrors }) => {
       try {
         const formData = new FormData();
-        Object.keys(values).forEach(key => {
+        Object.keys(values).forEach((key) => {
           formData.append(key, values[key]);
         });
 
-        const response = await fetch('/api/register', {
-          method: 'POST',
+        const response = await fetch("/api/register", {
+          method: "POST",
           body: formData,
         });
 
         if (response.ok) {
-          alert('Registration successful! Please log in.');
+          alert("Registration successful! Please log in.");
         } else {
           const errorData = await response.json();
           setErrors({ email: errorData.message });
         }
       } catch (error) {
-        console.error('Error registering user:', error);
+        console.error("Error registering user:", error);
       } finally {
         setSubmitting(false);
       }
@@ -248,7 +258,10 @@ const RegistrationForm = () => {
           name="profilePicture"
           type="file"
           onChange={(event) => {
-            formik.setFieldValue('profilePicture', event.currentTarget.files[0]);
+            formik.setFieldValue(
+              "profilePicture",
+              event.currentTarget.files[0],
+            );
           }}
         />
         {formik.touched.profilePicture && formik.errors.profilePicture ? (

@@ -12,7 +12,9 @@ const LoginForm = () => {
       <Formik
         initialValues={{ email: "", password: "" }}
         validationSchema={Yup.object({
-          email: Yup.string().email("Invalid email address").required("Required"),
+          email: Yup.string()
+            .email("Invalid email address")
+            .required("Required"),
           password: Yup.string()
             .min(8, "Must be at least 8 characters")
             .required("Required"),
@@ -47,7 +49,9 @@ const LoginForm = () => {
                 value={values.password}
                 required
               />
-              {errors.password && <div className="error">{errors.password}</div>}
+              {errors.password && (
+                <div className="error">{errors.password}</div>
+              )}
             </div>
             <button type="submit" disabled={isSubmitting || loading}>
               {loading ? "Logging in..." : "Login"}

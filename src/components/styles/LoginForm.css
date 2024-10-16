@@ -1,0 +1,89 @@
+.login-form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  font-family: "Arial, sans-serif";
+}
+.login-form h2 {
+  text-align: center;
+  color: #333;
+}
+.login-form label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: bold;
+}
+.login-form input[type="email"],
+.login-form input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-family: "Arial, sans-serif";
+  transition: border-color 0.3s;
+}
+.login-form input[type="email"].error,
+.login-form input[type="password"].error {
+  border-color: #ff4d4d;
+}
+.login-form .error-message {
+  color: #ff4d4d;
+  font-size: 0.9em;
+  margin-top: -5px;
+  margin-bottom: 10px;
+}
+.login-form button {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  background-color: #28a745;
+  transition: background-color 0.3s;
+}
+.login-form button:hover {
+  opacity: 0.8;
+}
+.login-form button:disabled {
+  background-color: #1e7e34;
+  cursor: not-allowed;
+}
+.login-form button .spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid white;
+  border-top: 2px solid transparent;
+  border-radius: 50%;
+  animation: spin 0.75s linear infinite;
+}
+.login-form a {
+  display: block;
+  margin-top: 10px;
+  text-align: center;
+  color: #007bff;
+  text-decoration: none;
+}
+.login-form a:hover {
+  text-decoration: underline;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.utility-margin {
+  margin: 20px;
+}
+
+.utility-padding {
+  padding: 15px;
+}
+
+/*# sourceMappingURL=LoginForm.css.map */

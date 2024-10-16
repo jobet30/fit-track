@@ -1,0 +1,124 @@
+$primary-color: #28a745;
+$secondary-color: #007bff;
+$error-color: #ff4d4d;
+$background-color: #f9f9f9;
+$border-color: #ccc;
+$border-radius: 5px;
+$padding: 10px;
+$max-width: 400px;
+$font-family: 'Arial, sans-serif';
+
+@mixin button-styles($bg-color) {
+  padding: $padding;
+  border: none;
+  border-radius: $border-radius;
+  color: white;
+  cursor: pointer;
+  background-color: $bg-color;
+  transition: background-color 0.3s;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+@mixin input-field {
+  width: 100%;
+  padding: $padding;
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+  font-family: $font-family;
+  transition: border-color 0.3s;
+
+  &.error {
+    border-color: $error-color;
+  }
+}
+
+.login-form {
+  max-width: $max-width;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+  background-color: $background-color;
+  font-family: $font-family;
+
+  h2 {
+    text-align: center;
+    color: #333;
+  }
+
+  label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+  }
+
+  input[type="email"],
+  input[type="password"] {
+    @include input-field;
+  }
+
+  .error-message {
+    color: $error-color;
+    font-size: 0.9em;
+    margin-top: -5px;
+    margin-bottom: 10px;
+  }
+
+  button {
+    @include button-styles($primary-color);
+
+    &:disabled {
+      background-color: darken($primary-color, 10%);
+      cursor: not-allowed;
+    }
+
+    .spinner {
+      width: 16px;
+      height: 16px;
+      border: 2px solid white;
+      border-top: 2px solid transparent;
+      border-radius: 50%;
+      animation: spin 0.75s linear infinite;
+    }
+  }
+
+  a {
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+    color: $secondary-color;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@mixin margin($value) {
+  margin: $value;
+}
+
+@mixin padding($value) {
+  padding: $value;
+}
+
+.utility-margin {
+  @include margin(20px);
+}
+
+.utility-padding {
+  @include padding(15px);
+}
